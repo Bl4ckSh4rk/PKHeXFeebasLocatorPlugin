@@ -3,4 +3,5 @@
 
 ## How to use
 Put the plugin into the plugins folder in your PKHeX directory.
-Ruby, Sapphire and Emerald are support. No Gen 4 support for now.
+
+Ruby, Sapphire and Emerald are supported. No Gen 4 support for now.
