@@ -27,7 +27,7 @@ namespace FeebasLocatorPlugin
             if (sav.DP)
                 SeedOffset = 0x53C8;
             if (sav.Pt)
-                SeedOffset = 0x5638;
+                SeedOffset = 0x5664;
 
             Gen3 = sav.RS || sav.E;
             Gen4 = sav.DP || sav.Pt;
