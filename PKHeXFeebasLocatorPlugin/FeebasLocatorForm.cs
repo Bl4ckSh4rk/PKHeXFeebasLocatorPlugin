@@ -86,6 +86,7 @@ namespace FeebasLocatorPlugin
             FeebasSeedBox.MaxLength = 8;
 
             FeebasSeedBox.Enabled = false;
+            SaveButton.Enabled = false;
         }
 
         private void MarkTiles(uint[] tiles)
