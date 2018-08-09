@@ -83,6 +83,16 @@ namespace FeebasLocatorPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mtcoronet {
+            get {
+                object obj = ResourceManager.GetObject("mtcoronet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap route119 {
             get {
                 object obj = ResourceManager.GetObject("route119", resourceCulture);

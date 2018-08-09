@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Feebas.cs" />
     <Compile Include="FeebasLocatorPlugin.cs" />
     <Compile Include="FeebasLocatorForm.cs">
       <SubType>Form</SubType>
@@ -72,6 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\marker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mtcoronet.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
