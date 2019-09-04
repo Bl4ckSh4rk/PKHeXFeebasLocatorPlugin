@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A2DB1F31-4192-4965-B720-D36BF522DCA3}</ProjectGuid>
+    <ProjectGuid>{53DF15A7-05B1-4BC4-B328-3228A271C7A1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FeebasLocatorPlugin</RootNamespace>

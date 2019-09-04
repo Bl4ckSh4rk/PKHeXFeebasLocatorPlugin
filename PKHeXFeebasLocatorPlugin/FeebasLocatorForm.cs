@@ -20,24 +20,32 @@ namespace FeebasLocatorPlugin
             for (int i = 0; i < Marker.Length; i++)
                 Marker[i] = new Panel();
 
-            if (sav.RS)
-                SeedOffset = ((SAV3)sav).GetBlockOffset(3) + 0xED6;
-            if (sav.E)
-                SeedOffset = ((SAV3)sav).GetBlockOffset(3) + 0xF6A;
-            if (sav.DP)
-                SeedOffset = 0x53C8;
-            if (sav.Pt)
-                SeedOffset = 0x5664;
+            switch (sav.Version)
+            {
+                case GameVersion.R:
+                case GameVersion.S:
+                case GameVersion.RS:
+                    SeedOffset = ((SAV3)sav).GetBlockOffset(3) + 0xED6;
+                    break;
+                case GameVersion.E:
+                    SeedOffset = ((SAV3)sav).GetBlockOffset(3) + 0xF6A;
+                    break;
+                case GameVersion.D:
+                case GameVersion.P:
+                case GameVersion.DP:
+                    SeedOffset = 0x53C8;
+                    break;
+                case GameVersion.Pt:
+                    SeedOffset = 0x5664;
+                    break;
+            }
 
-            Gen3 = sav.RS || sav.E;
-            Gen4 = sav.DP || sav.Pt;
-
-            if (Gen3)
+            if (sav.Generation == 3)
             {
                 SetupGen3Form();
                 Seed = BitConverter.ToUInt16(sav.Data, SeedOffset);
             }
-            if (Gen4)
+            if (sav.Generation == 4)
             {
                 SetupGen4Form();
                 Seed = BitConverter.ToUInt32(sav.Data, SeedOffset);

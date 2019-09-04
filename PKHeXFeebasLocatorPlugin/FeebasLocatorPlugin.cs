@@ -39,10 +39,24 @@ namespace FeebasLocatorPlugin
 
         private void OpenFeebasLocatorForm(object sender, EventArgs e)
         {
-            if (SaveFileEditor.SAV.RS || SaveFileEditor.SAV.E || SaveFileEditor.SAV.DP || SaveFileEditor.SAV.Pt)
-                new FeebasLocatorForm(SaveFileEditor.SAV).ShowDialog();
-            else
-                MessageBox.Show("Feebas Locator is only available for Ruby, Sapphire and Emerald as well as Diamond, Pearl and Platinum.", "Error");
+            switch (SaveFileEditor.SAV.Version)
+            {
+                case GameVersion.S:
+                case GameVersion.R:
+                case GameVersion.E:
+                case GameVersion.D:
+                case GameVersion.P:
+                case GameVersion.Pt:
+                case GameVersion.RS:
+                case GameVersion.RSE:
+                case GameVersion.DP:
+                case GameVersion.DPPt:
+                    new FeebasLocatorForm(SaveFileEditor.SAV).ShowDialog();
+                    break;
+                default:
+                    MessageBox.Show("Feebas Locator is only available for Ruby, Sapphire and Emerald as well as Diamond, Pearl and Platinum.", "Error");
+                    break;
+            }
         }
 
         public void NotifySaveLoaded()
