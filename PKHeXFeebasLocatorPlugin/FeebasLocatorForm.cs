@@ -10,20 +10,20 @@ namespace FeebasLocatorPlugin
         private SaveFile sav;
         private uint Seed;
         private int SeedOffset;
-        private bool Gen3 = false;
-        private bool Gen4 = false;
         private Panel[] Marker = new Panel[6];
 
         public FeebasLocatorForm(SaveFile sav)
         {
+            this.sav = sav;
             InitializeComponent();
+
             for (int i = 0; i < Marker.Length; i++)
                 Marker[i] = new Panel();
 
             switch (sav.Version)
             {
-                case GameVersion.R:
                 case GameVersion.S:
+                case GameVersion.R:
                 case GameVersion.RS:
                     SeedOffset = ((SAV3)sav).GetBlockOffset(3) + 0xED6;
                     break;
@@ -45,15 +45,13 @@ namespace FeebasLocatorPlugin
                 SetupGen3Form();
                 Seed = BitConverter.ToUInt16(sav.Data, SeedOffset);
             }
-            if (sav.Generation == 4)
+            else if (sav.Generation == 4)
             {
                 SetupGen4Form();
                 Seed = BitConverter.ToUInt32(sav.Data, SeedOffset);
             }
 
             FeebasSeedBox.Text = Seed.ToString("X");
-
-            this.sav = sav;
         }
 
         private void SetupGen3Form()
@@ -106,14 +104,14 @@ namespace FeebasLocatorPlugin
                 int width = 0;
                 int height = 0;
 
-                if (Gen3)
+                if (sav.Generation == 3)
                 {
                     x = TileCoordinatesGen3[tiles[i] - 4, 0];
                     y = TileCoordinatesGen3[tiles[i] - 4, 1];
                     width = 15;
                     height = 15;
                 }
-                if(Gen4)
+                else if(sav.Generation == 4)
                 {
                     x = TileCoordinatesGen4[tiles[i], 0];
                     y = TileCoordinatesGen4[tiles[i], 1];
@@ -128,9 +126,9 @@ namespace FeebasLocatorPlugin
                 Marker[i].Size = new Size(width, height);
 
                 // only show accesibe locations
-                if(Gen3)
+                if (sav.Generation == 3)
                     Marker[i].Visible = Feebas3.IsAccessible(tiles[i]);
-                if (Gen4)
+                else if (sav.Generation == 4)
                     Marker[i].Visible = Feebas4.IsAccessible(tiles[i]);
 
                 TilePanel.Controls.Add(Marker[i]);
@@ -249,9 +247,9 @@ namespace FeebasLocatorPlugin
         {
             Seed = Util.GetHexValue(FeebasSeedBox.Text);
 
-            if (Gen3)
+            if (sav.Generation == 3)
                 MarkTiles(Feebas3.GetTiles(Seed));
-            if (Gen4)
+            else if (sav.Generation == 4)
                 MarkTiles(Feebas4.GetTiles(Seed));
         }
 
