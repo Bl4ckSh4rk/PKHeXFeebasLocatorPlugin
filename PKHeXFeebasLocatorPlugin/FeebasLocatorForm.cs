@@ -110,6 +110,12 @@ namespace FeebasLocatorPlugin
                     y = TileCoordinatesGen3[tiles[i] - 4, 1];
                     width = 15;
                     height = 15;
+
+                    Marker[i].Visible = Feebas3.IsAccessible(tiles[i]);
+
+                    // for some reason all the tiles under the bridge in the north of Route 119 are considered to be tile 132 ...
+                    if(Feebas3.IsUnderBridge(tiles[i]))
+                        MarkGen3UnderBridgeTiles();
                 }
                 else if(sav.Generation == 4)
                 {
@@ -117,6 +123,8 @@ namespace FeebasLocatorPlugin
                     y = TileCoordinatesGen4[tiles[i], 1];
                     width = TileCoordinatesGen4[tiles[i], 2];
                     height = TileCoordinatesGen4[tiles[i], 3];
+
+                    Marker[i].Visible = Feebas4.IsAccessible(tiles[i]);
                 }
                 
                 Marker[i].BackColor = Color.Transparent;
@@ -125,11 +133,29 @@ namespace FeebasLocatorPlugin
                 Marker[i].Name = "Marker" + i;
                 Marker[i].Size = new Size(width, height);
 
-                // only show accesibe locations
-                if (sav.Generation == 3)
-                    Marker[i].Visible = Feebas3.IsAccessible(tiles[i]);
-                else if (sav.Generation == 4)
-                    Marker[i].Visible = Feebas4.IsAccessible(tiles[i]);
+                TilePanel.Controls.Add(Marker[i]);
+            }
+        }
+
+        private void MarkGen3UnderBridgeTiles()
+        {        
+            int[,] TileCoordinates =
+            {
+                {257, 257}, {273, 257}, {289, 257}, {305, 257}, {321, 257},
+                {257, 273}, {273, 273}, {289, 273}, {305, 273}, {321, 273}
+            };
+
+            Panel[] Marker = new Panel[10];
+
+            for (int i = 0; i < 10; i++)
+            {
+                Marker[i] = new Panel();
+                Marker[i].BackColor = Color.Transparent;
+                Marker[i].BackgroundImage = Properties.Resources.marker;
+                Marker[i].Location = new Point(TileCoordinates[i, 0], TileCoordinates[i, 1]);
+                Marker[i].Name = "MarkerUnderBridge" + i;
+                Marker[i].Size = new Size(15, 15);
+                Marker[i].Visible = true;
 
                 TilePanel.Controls.Add(Marker[i]);
             }

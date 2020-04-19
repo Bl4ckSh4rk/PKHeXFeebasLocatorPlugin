@@ -31,6 +31,13 @@
                 return false;
             return true;
         }
+
+        public static bool IsUnderBridge(uint tile)
+        {
+            if (tile == 132)
+                return true;
+            return false;
+        }
     }
 
     public static class Feebas4
