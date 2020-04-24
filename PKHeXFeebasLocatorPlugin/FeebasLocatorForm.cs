@@ -48,7 +48,7 @@ namespace FeebasLocatorPlugin
             else if (sav.Generation == 4)
             {
                 SetupGen4Form();
-                Seed = BitConverter.ToUInt32(sav.Data, SeedOffset);
+                Seed = BitConverter.ToUInt32(((SAV4)sav).General, SeedOffset);
             }
 
             FeebasSeedBox.Text = Seed.ToString("X");
@@ -90,9 +90,6 @@ namespace FeebasLocatorPlugin
 
             FeebasSeedBox.Size = new Size(82, 20);
             FeebasSeedBox.MaxLength = 8;
-
-            FeebasSeedBox.Enabled = false;
-            SaveButton.Enabled = false;
         }
 
         private void MarkTiles(uint[] tiles)
@@ -159,6 +156,22 @@ namespace FeebasLocatorPlugin
 
                 TilePanel.Controls.Add(Marker[i]);
             }
+        }
+
+        private void FeebasSeedBox_TextChanged(object sender, EventArgs e)
+        {
+            Seed = Util.GetHexValue(FeebasSeedBox.Text);
+
+            if (sav.Generation == 3)
+                MarkTiles(Feebas3.GetTiles(Seed));
+            else if (sav.Generation == 4)
+                MarkTiles(Feebas4.GetTiles(Seed));
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            sav.SetData(BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)), SeedOffset);
+            Close();
         }
 
         // {x, y}, width & height always 15
@@ -268,21 +281,5 @@ namespace FeebasLocatorPlugin
             {119, 372, 14, 10}, {134, 372, 13, 10}, {148, 372, 12, 10}, {161, 372, 11, 10}, {173, 372, 12, 10}, {186, 372, 12, 10}, {199, 372, 13, 10}, {213, 372, 14, 10}, {228, 372, 12, 10}, {241, 372, 11, 10},
             {253, 372, 13, 10}, {267, 372, 13, 10}, {281, 372, 11, 10}, {293, 372, 11, 10}, {305, 372, 12, 10}, {318, 372, 14, 10}, {333, 372, 13, 10}, {347, 372, 13, 10}
         };
-        
-        private void FeebasSeedBox_TextChanged(object sender, EventArgs e)
-        {
-            Seed = Util.GetHexValue(FeebasSeedBox.Text);
-
-            if (sav.Generation == 3)
-                MarkTiles(Feebas3.GetTiles(Seed));
-            else if (sav.Generation == 4)
-                MarkTiles(Feebas4.GetTiles(Seed));
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            sav.SetData(BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)), SeedOffset);
-            Close();
-        }
     }
 }
