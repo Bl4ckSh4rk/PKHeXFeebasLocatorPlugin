@@ -170,7 +170,14 @@ namespace FeebasLocatorPlugin
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            sav.SetData(BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)), SeedOffset);
+            if (sav.Generation == 3)
+            {
+                sav.SetData(BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)), SeedOffset);
+            }
+            if (sav.Generation == 4)
+            {
+                sav.SetData(((SAV4)sav).General, BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)), SeedOffset);
+            }
             Close();
         }
 
