@@ -40,15 +40,15 @@ namespace FeebasLocatorPlugin
                     break;
             }
 
-            if (sav.Generation == 3)
+            if (sav is SAV3 s3)
             {
                 SetupGen3Form();
-                Seed = BitConverter.ToUInt16(sav.Data, SeedOffset);
+                Seed = BitConverter.ToUInt16(s3.Large, SeedOffset);
             }
-            else if (sav.Generation == 4)
+            else if (sav is SAV4 s4)
             {
                 SetupGen4Form();
-                Seed = BitConverter.ToUInt32(((SAV4)sav).General, SeedOffset);
+                Seed = BitConverter.ToUInt32(s4.General, SeedOffset);
             }
 
             FeebasSeedBox.Text = Seed.ToString("X");
