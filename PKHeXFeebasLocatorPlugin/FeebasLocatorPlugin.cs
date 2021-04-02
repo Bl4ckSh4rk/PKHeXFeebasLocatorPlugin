@@ -8,16 +8,14 @@ namespace FeebasLocatorPlugin
     {
         public string Name => "Feebas Locator";
         public int Priority => 1; // Loading order, lowest is first.
-        public ISaveFileProvider SaveFileEditor { get; private set; }
-        public IPKMView PKMEditor { get; private set; }
+        public ISaveFileProvider SaveFileEditor { get; private set; } = null!;
+        public IPKMView PKMEditor { get; private set; } = null!;
 
         public void Initialize(params object[] args)
         {
             Console.WriteLine($"Loading {Name}...");
-            if (args == null)
-                return;
-            SaveFileEditor = (ISaveFileProvider)Array.Find(args, z => z is ISaveFileProvider);
-            PKMEditor = (IPKMView)Array.Find(args, z => z is IPKMView);
+            SaveFileEditor = (ISaveFileProvider)Array.Find(args, z => z is ISaveFileProvider)!;
+            PKMEditor = (IPKMView)Array.Find(args, z => z is IPKMView)!;
             var menu = (ToolStrip)Array.Find(args, z => z is ToolStrip);
             LoadMenuStrip(menu);
         }
@@ -25,7 +23,7 @@ namespace FeebasLocatorPlugin
         private void LoadMenuStrip(ToolStrip menuStrip)
         {
             var items = menuStrip.Items;
-            var tools = items.Find("Menu_Tools", false)[0] as ToolStripDropDownItem;
+            var tools = (ToolStripDropDownItem) items.Find("Menu_Tools", false)[0];
             AddPluginControl(tools);
         }
 

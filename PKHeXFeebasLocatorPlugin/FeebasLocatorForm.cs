@@ -25,10 +25,10 @@ namespace FeebasLocatorPlugin
                 case GameVersion.S:
                 case GameVersion.R:
                 case GameVersion.RS:
-                    SeedOffset = ((SAV3)sav).GetBlockOffset(3) + 0xED6;
+                    SeedOffset = 0x2DD4 + 2; // DewfordTrend
                     break;
                 case GameVersion.E:
-                    SeedOffset = ((SAV3)sav).GetBlockOffset(3) + 0xF6A;
+                    SeedOffset = 0x2E64 + 2; // DewfordTrend
                     break;
                 case GameVersion.D:
                 case GameVersion.P:
