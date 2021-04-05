@@ -11,6 +11,8 @@ namespace FeebasLocatorPlugin
         public ISaveFileProvider SaveFileEditor { get; private set; } = null!;
         public IPKMView PKMEditor { get; private set; } = null!;
 
+        private ToolStripMenuItem? ctrl;
+
         public void Initialize(params object[] args)
         {
             Console.WriteLine($"Loading {Name}...");
@@ -29,37 +31,22 @@ namespace FeebasLocatorPlugin
 
         private void AddPluginControl(ToolStripDropDownItem tools)
         {
-            var ctrl = new ToolStripMenuItem(Name);
+            ctrl = new ToolStripMenuItem(Name);
             tools.DropDownItems.Add(ctrl);
             ctrl.Image = Properties.Resources.icon;
             ctrl.Click += new EventHandler(OpenFeebasLocatorForm);
+            ctrl.Enabled = false;
         }
 
         private void OpenFeebasLocatorForm(object sender, EventArgs e)
         {
-            switch (SaveFileEditor.SAV.Version)
-            {
-                case GameVersion.S:
-                case GameVersion.R:
-                case GameVersion.E:
-                case GameVersion.D:
-                case GameVersion.P:
-                case GameVersion.Pt:
-                case GameVersion.RS:
-                case GameVersion.RSE:
-                case GameVersion.DP:
-                case GameVersion.DPPt:
-                    new FeebasLocatorForm(SaveFileEditor.SAV).ShowDialog();
-                    break;
-                default:
-                    MessageBox.Show("Feebas Locator is only available for Ruby, Sapphire and Emerald as well as Diamond, Pearl and Platinum.", "Error");
-                    break;
-            }
+            _ = new FeebasLocatorForm(SaveFileEditor.SAV).ShowDialog();
         }
 
         public void NotifySaveLoaded()
         {
-            Console.WriteLine($"{Name} was notified that a Save File was just loaded.");
+            if (ctrl != null)
+                ctrl.Enabled = SaveFileEditor.SAV.Version is GameVersion.R or GameVersion.S or GameVersion.E or GameVersion.RS or GameVersion.RSE or GameVersion.D or GameVersion.P or GameVersion.Pt or GameVersion.DP or GameVersion.DPPt;
         }
         public bool TryLoadFile(string filePath)
         {

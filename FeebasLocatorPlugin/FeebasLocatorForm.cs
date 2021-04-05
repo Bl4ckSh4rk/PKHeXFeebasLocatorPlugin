@@ -7,10 +7,10 @@ namespace FeebasLocatorPlugin
 {
     public partial class FeebasLocatorForm : Form
     {
-        private SaveFile sav;
+        private readonly SaveFile sav;
         private uint Seed;
-        private int SeedOffset;
-        private Panel[] Marker = new Panel[6];
+        private readonly int SeedOffset;
+        private readonly Panel[] Marker = new Panel[6];
 
         public FeebasLocatorForm(SaveFile sav)
         {
@@ -28,7 +28,7 @@ namespace FeebasLocatorPlugin
                     SeedOffset = 0x2DD4 + 2; // DewfordTrend
                     break;
                 case GameVersion.E:
-                    SeedOffset = 0x2E64 + 2; // DewfordTrend
+                    SeedOffset = 0x2E64 + 6; // DewfordTrend
                     break;
                 case GameVersion.D:
                 case GameVersion.P:
@@ -101,7 +101,7 @@ namespace FeebasLocatorPlugin
                 int width = 0;
                 int height = 0;
 
-                if (sav.Generation == 3)
+                if (sav is SAV3)
                 {
                     x = TileCoordinatesGen3[tiles[i] - 4, 0];
                     y = TileCoordinatesGen3[tiles[i] - 4, 1];
@@ -111,10 +111,10 @@ namespace FeebasLocatorPlugin
                     Marker[i].Visible = Feebas3.IsAccessible(tiles[i]);
 
                     // for some reason all the tiles under the bridge in the north of Route 119 are considered to be tile 132 ...
-                    if(Feebas3.IsUnderBridge(tiles[i]))
+                    if (Feebas3.IsUnderBridge(tiles[i]))
                         MarkGen3UnderBridgeTiles();
                 }
-                else if(sav.Generation == 4)
+                else if (sav is SAV4)
                 {
                     x = TileCoordinatesGen4[tiles[i], 0];
                     y = TileCoordinatesGen4[tiles[i], 1];
@@ -146,13 +146,15 @@ namespace FeebasLocatorPlugin
 
             for (int i = 0; i < 10; i++)
             {
-                Marker[i] = new Panel();
-                Marker[i].BackColor = Color.Transparent;
-                Marker[i].BackgroundImage = Properties.Resources.marker;
-                Marker[i].Location = new Point(TileCoordinates[i, 0], TileCoordinates[i, 1]);
-                Marker[i].Name = "MarkerUnderBridge" + i;
-                Marker[i].Size = new Size(15, 15);
-                Marker[i].Visible = true;
+                Marker[i] = new Panel
+                {
+                    BackColor = Color.Transparent,
+                    BackgroundImage = Properties.Resources.marker,
+                    Location = new Point(TileCoordinates[i, 0], TileCoordinates[i, 1]),
+                    Name = "MarkerUnderBridge" + i,
+                    Size = new Size(15, 15),
+                    Visible = true
+                };
 
                 TilePanel.Controls.Add(Marker[i]);
             }
@@ -162,27 +164,27 @@ namespace FeebasLocatorPlugin
         {
             Seed = Util.GetHexValue(FeebasSeedBox.Text);
 
-            if (sav.Generation == 3)
+            if (sav is SAV3)
                 MarkTiles(Feebas3.GetTiles(Seed));
-            else if (sav.Generation == 4)
+            else if (sav is SAV4)
                 MarkTiles(Feebas4.GetTiles(Seed));
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (sav.Generation == 3)
+            if (sav is SAV3 s3)
             {
-                sav.SetData(BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)), SeedOffset);
+                BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)).CopyTo(s3.Large, SeedOffset);
             }
-            if (sav.Generation == 4)
+            else if (sav is SAV4 s4)
             {
-                sav.SetData(((SAV4)sav).General, BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)), SeedOffset);
+                BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)).CopyTo(s4.General, SeedOffset);
             }
             Close();
         }
 
         // {x, y}, width & height always 15
-        private int[,] TileCoordinatesGen3 =
+        private readonly int[,] TileCoordinatesGen3 =
         {
             {289, 17}, {289, 33}, {305, 33}, {257, 49}, {273, 49}, {289, 49}, {305, 49}, {273, 65}, {289, 65}, {305, 65},
             {273, 81}, {289, 81}, {305, 81}, {273, 97}, {289, 97}, {305, 97}, {273, 113}, {289, 113}, {305, 113}, {273, 193},
@@ -232,7 +234,7 @@ namespace FeebasLocatorPlugin
         };
 
         // {x, y, width, height}
-        private int[,] TileCoordinatesGen4 =
+        private readonly int[,] TileCoordinatesGen4 =
         {
             {119, 35, 14, 9}, {134, 35, 13, 9}, {148, 35, 12, 9}, {161, 35, 11, 9}, {173, 35, 12, 9}, {186, 35, 12, 9}, {199, 35, 13, 9}, {213, 35, 14, 9}, {228, 35, 12, 9}, {241, 35, 11, 9},
             {253, 35, 13, 9}, {267, 35, 13, 9}, {281, 35, 11, 9}, {293, 35, 11, 9}, {305, 35, 12, 9}, {318, 35, 14, 9}, {333, 35, 13, 9}, {347, 35, 13, 9}, {119, 45, 14, 9}, {134, 45, 13, 9},

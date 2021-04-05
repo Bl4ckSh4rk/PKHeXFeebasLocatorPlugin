@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <Description>Feebas Locator PKHeX Plugin</Description>
+    <FileVersion>1.0.4.0</FileVersion>
     <TargetFramework>net46</TargetFramework>
     <OutputType>Library</OutputType>
     <LangVersion>9</LangVersion>

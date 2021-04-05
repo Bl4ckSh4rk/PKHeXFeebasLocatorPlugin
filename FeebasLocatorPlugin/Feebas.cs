@@ -27,16 +27,20 @@
 
         public static bool IsAccessible(uint tile)
         {
-            if (tile < 4 || tile > 447 || tile == 105 || tile == 119 || tile == 132 || tile == 144 || tile == 296 || tile == 297 || tile == 298)
-                return false;
-            return true;
+            return tile switch
+            {
+                < 4 or > 447 or 105 or 119 or 132 or 144 or 296 or 297 or 298 => false,
+                _ => true
+            };
         }
 
         public static bool IsUnderBridge(uint tile)
         {
-            if (tile == 132)
-                return true;
-            return false;
+            return tile switch
+            {
+                132 => true,
+                _ => false
+            };
         }
     }
 
@@ -57,9 +61,11 @@
 
         public static bool IsAccessible(uint tile)
         {
-            if (tile < 0 || tile > 528)
-                return false;
-            return true;
+            return tile switch
+            {
+                < 0 or > 528 => false,
+                _ => true
+            };
         }
     }
 }
