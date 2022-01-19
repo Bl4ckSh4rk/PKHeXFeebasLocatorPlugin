@@ -46,7 +46,7 @@ namespace FeebasLocatorPlugin
         public void NotifySaveLoaded()
         {
             if (ctrl != null)
-                ctrl.Enabled = SaveFileEditor.SAV.Version is GameVersion.R or GameVersion.S or GameVersion.E or GameVersion.RS or GameVersion.RSE or GameVersion.D or GameVersion.P or GameVersion.Pt or GameVersion.DP or GameVersion.DPPt;
+                ctrl.Enabled = SaveFileEditor.SAV is SAV3RS or SAV3E or SAV4DP or SAV4Pt;
         }
         public bool TryLoadFile(string filePath)
         {
