@@ -18,26 +18,27 @@ namespace FeebasLocatorPlugin
             Console.WriteLine($"Loading {Name}...");
             SaveFileEditor = (ISaveFileProvider)Array.Find(args, z => z is ISaveFileProvider)!;
             PKMEditor = (IPKMView)Array.Find(args, z => z is IPKMView)!;
-            LoadMenuStrip((ToolStrip)Array.Find(args, z => z is ToolStrip));
+            LoadMenuStrip((ToolStrip?)Array.Find(args, z => z is ToolStrip));
         }
 
-        private void LoadMenuStrip(ToolStrip menuStrip)
+        private void LoadMenuStrip(ToolStrip? menuStrip)
         {
-            AddPluginControl((ToolStripDropDownItem)menuStrip.Items.Find("Menu_Tools", false)[0]);
+            AddPluginControl((ToolStripDropDownItem?)menuStrip?.Items.Find("Menu_Tools", false)[0]);
         }
 
-        private void AddPluginControl(ToolStripDropDownItem tools)
+        private void AddPluginControl(ToolStripDropDownItem? tools)
         {
             ctrl = new ToolStripMenuItem(Name)
             {
                 Visible = false,
                 Image = Properties.Resources.icon
             };
+
             ctrl.Click += new EventHandler(OpenFeebasLocatorForm);
-            tools.DropDownItems.Add(ctrl);
+            _ = (tools?.DropDownItems.Add(ctrl));
         }
 
-        private void OpenFeebasLocatorForm(object sender, EventArgs e)
+        private void OpenFeebasLocatorForm(object? sender, EventArgs? e)
         {
             _ = new FeebasLocatorForm(SaveFileEditor.SAV).ShowDialog();
         }

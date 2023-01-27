@@ -2,16 +2,15 @@
 {
     public static class Feebas3
     {
-        public static uint[] GetTiles(uint seed)
+        public static ushort[] GetTiles(uint seed)
         {
-            int i = 0;
-            uint[] tiles = new uint[6] { 0, 0, 0, 0, 0, 0 };
-            uint tile = 0;
+            ushort[] tiles = new ushort[6] { 0, 0, 0, 0, 0, 0 };
+            ushort tile;
 
-            while (i < 6)
+            for(short i = 0; i < 6; i++)
             {
                 seed = (0x41C64E6D * seed) + 0x3039;
-                tile = (((seed >> 16)) % 0x1BF);
+                tile = (ushort)((seed >> 16) % 0x1BF);
 
                 if (tile == 0)
                     tile = 447;
@@ -25,47 +24,23 @@
             return tiles;
         }
 
-        public static bool IsAccessible(uint tile)
-        {
-            return tile switch
-            {
-                < 4 or > 447 or 105 or 119 or 132 or 144 or 296 or 297 or 298 => false,
-                _ => true
-            };
-        }
-
-        public static bool IsUnderBridge(uint tile)
-        {
-            return tile switch
-            {
-                132 => true,
-                _ => false
-            };
-        }
+        public static bool IsAccessible(ushort tile) => tile is not (< 4 or > 447 or 105 or 119 or 132 or 144 or 296 or 297 or 298);
+        public static bool IsUnderBridge(ushort tile) => tile is 132;
     }
 
     public static class Feebas4
     {
-        public static uint[] GetTiles(uint seed)
+        public static ushort[] GetTiles(uint seed)
         {
-            int i = 0;
-            uint[] tiles = new uint[4] { 0, 0, 0, 0 };
+            ushort[] tiles = new ushort[4] { 0, 0, 0, 0 };
 
-            while (i < 4)
+            for(short i = 0; i < 4; i++)
             {
-                tiles[i] = (uint)((((seed >> (24 - 8 * i)) & 0xFF) % 0x84) + (0x84 * i));
-                i++;
+                tiles[i] = (ushort)((((seed >> (24 - 8 * i)) & 0xFF) % 0x84) + (0x84 * i));
             }
             return tiles;
         }
 
-        public static bool IsAccessible(uint tile)
-        {
-            return tile switch
-            {
-                < 0 or > 528 => false,
-                _ => true
-            };
-        }
+        public static bool IsAccessible(ushort tile) => tile is not (< 0 or > 528);
     }
 }

@@ -92,7 +92,7 @@ namespace FeebasLocatorPlugin
             FeebasSeedBox.MaxLength = 8;
         }
 
-        private void MarkTiles(uint[] tiles)
+        private void MarkTiles(ushort[] tiles)
         {
             for (int i = 0; i < tiles.Length && i < 6; i++)
             {
