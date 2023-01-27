@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using PKHeX.Core;
 
@@ -6,19 +8,20 @@ namespace FeebasLocatorPlugin
 {
     public class FeebasLocator : IPlugin
     {
-        public string Name => "Feebas Locator";
+        public string Name => TranslationStrings.PluginName;
         public int Priority => 1; // Loading order, lowest is first.
         public ISaveFileProvider SaveFileEditor { get; private set; } = null!;
-        public IPKMView PKMEditor { get; private set; } = null!;
 
         private ToolStripMenuItem? ctrl;
 
         public void Initialize(params object[] args)
         {
+            LocalizationUtil.SetLocalization(GameInfo.CurrentLanguage);
+
             Console.WriteLine($"Loading {Name}...");
             SaveFileEditor = (ISaveFileProvider)Array.Find(args, z => z is ISaveFileProvider)!;
-            PKMEditor = (IPKMView)Array.Find(args, z => z is IPKMView)!;
             LoadMenuStrip((ToolStrip?)Array.Find(args, z => z is ToolStrip));
+
         }
 
         private void LoadMenuStrip(ToolStrip? menuStrip)

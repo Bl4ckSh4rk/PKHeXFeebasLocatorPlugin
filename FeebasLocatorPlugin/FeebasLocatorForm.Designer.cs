@@ -76,7 +76,7 @@
             this.FeebasSeedLabel.Name = "FeebasSeedLabel";
             this.FeebasSeedLabel.Size = new System.Drawing.Size(71, 15);
             this.FeebasSeedLabel.TabIndex = 2;
-            this.FeebasSeedLabel.Text = "Feebas Seed";
+            this.FeebasSeedLabel.Text = TranslationStrings.FeebasSeed;
             // 
             // SaveButton
             // 
@@ -86,7 +86,7 @@
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(88, 30);
             this.SaveButton.TabIndex = 1;
-            this.SaveButton.Text = "Save";
+            this.SaveButton.Text = TranslationStrings.SaveSeed;
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
@@ -116,7 +116,7 @@
             this.MaximizeBox = false;
             this.Name = "FeebasLocatorForm";
             this.ShowIcon = false;
-            this.Text = "Feebas Locator";
+            this.Text = TranslationStrings.PluginName;
             this.FeebasLocatorPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

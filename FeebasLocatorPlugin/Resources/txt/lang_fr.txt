@@ -1,0 +1,5 @@
+﻿PluginName = Localisateur de Barpau
+FeebasSeed = Seed de Barpau
+SaveSeed = Sauver
+Route119 = Route 119
+MtCoronet = Mont Couronné

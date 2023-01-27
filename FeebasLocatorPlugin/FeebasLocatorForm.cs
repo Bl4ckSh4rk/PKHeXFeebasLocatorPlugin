@@ -67,7 +67,7 @@ namespace FeebasLocatorPlugin
             TilePanel.Size = new Size(641, 1553);
             TilePanel.BackgroundImage = Properties.Resources.route119;
 
-            LocationLabel.Text = "Route 119";
+            LocationLabel.Text = TranslationStrings.Route119;
 
             FeebasSeedBox.Size = new Size(52, 20);
             FeebasSeedBox.MaxLength = 4;
@@ -86,7 +86,7 @@ namespace FeebasLocatorPlugin
             TilePanel.Size = new Size(425, 386);
             TilePanel.BackgroundImage = Properties.Resources.mtcoronet;
 
-            LocationLabel.Text = "Mt. Coronet";
+            LocationLabel.Text = TranslationStrings.MtCoronet;
 
             FeebasSeedBox.Size = new Size(82, 20);
             FeebasSeedBox.MaxLength = 8;

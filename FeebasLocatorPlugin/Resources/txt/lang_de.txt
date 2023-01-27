@@ -1,0 +1,5 @@
+﻿PluginName = Barschwa Finder
+FeebasSeed = Barschwa Seed
+SaveSeed = Speichern
+Route119 = Route 119
+MtCoronet = Kraterberg

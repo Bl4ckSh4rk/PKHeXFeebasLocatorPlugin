@@ -1,0 +1,5 @@
+﻿PluginName = Feebas Locator
+FeebasSeed = Feebas Seed
+SaveSeed = Save
+Route119 = Route 119
+MtCoronet = Mt. Coronet

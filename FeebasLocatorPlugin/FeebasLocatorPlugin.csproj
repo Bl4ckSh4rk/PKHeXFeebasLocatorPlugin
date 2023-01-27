@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>Feebas Locator PKHeX Plugin</Description>
-    <FileVersion>1.3.0.0</FileVersion>
+    <FileVersion>1.4.0.0</FileVersion>
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <OutputType>Library</OutputType>
@@ -13,28 +13,6 @@
   <ItemGroup>
     <PackageReference Include="PKHeX.Core" Version="23.1.26" />
     <PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <None Include="Resources\route119.png" />
-    <None Include="Resources\icon.png" />
-    <None Include="Resources\marker.png" />
-    <None Include="Resources\mtcoronet.png" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   
 </Project>
