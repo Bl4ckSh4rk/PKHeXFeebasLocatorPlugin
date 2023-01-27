@@ -18,7 +18,6 @@
                 if (tile >= 4)
                 {
                     tiles[i] = tile;
-                    i++;
                 }
             }
             return tiles;

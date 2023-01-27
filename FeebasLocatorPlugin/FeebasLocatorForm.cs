@@ -94,12 +94,12 @@ namespace FeebasLocatorPlugin
 
         private void MarkTiles(ushort[] tiles)
         {
-            for (int i = 0; i < tiles.Length && i < 6; i++)
+            for (ushort i = 0; i < tiles.Length && i < 6; i++)
             {
-                int x = 0;
-                int y = 0;
-                int width = 0;
-                int height = 0;
+                ushort x = 0;
+                ushort y = 0;
+                ushort width = 0;
+                ushort height = 0;
 
                 if (sav is SAV3)
                 {
@@ -136,7 +136,7 @@ namespace FeebasLocatorPlugin
 
         private void MarkGen3UnderBridgeTiles()
         {        
-            int[,] TileCoordinates =
+            ushort[,] TileCoordinates =
             {
                 {257, 257}, {273, 257}, {289, 257}, {305, 257}, {321, 257},
                 {257, 273}, {273, 273}, {289, 273}, {305, 273}, {321, 273}
@@ -144,7 +144,7 @@ namespace FeebasLocatorPlugin
 
             Panel[] Marker = new Panel[10];
 
-            for (int i = 0; i < 10; i++)
+            for (ushort i = 0; i < 10; i++)
             {
                 Marker[i] = new Panel
                 {
@@ -184,7 +184,7 @@ namespace FeebasLocatorPlugin
         }
 
         // {x, y}, width & height always 15
-        private readonly int[,] TileCoordinatesGen3 =
+        private readonly ushort[,] TileCoordinatesGen3 =
         {
             {289, 17}, {289, 33}, {305, 33}, {257, 49}, {273, 49}, {289, 49}, {305, 49}, {273, 65}, {289, 65}, {305, 65},
             {273, 81}, {289, 81}, {305, 81}, {273, 97}, {289, 97}, {305, 97}, {273, 113}, {289, 113}, {305, 113}, {273, 193},
@@ -234,7 +234,7 @@ namespace FeebasLocatorPlugin
         };
 
         // {x, y, width, height}
-        private readonly int[,] TileCoordinatesGen4 =
+        private readonly ushort[,] TileCoordinatesGen4 =
         {
             {119, 35, 14, 9}, {134, 35, 13, 9}, {148, 35, 12, 9}, {161, 35, 11, 9}, {173, 35, 12, 9}, {186, 35, 12, 9}, {199, 35, 13, 9}, {213, 35, 14, 9}, {228, 35, 12, 9}, {241, 35, 11, 9},
             {253, 35, 13, 9}, {267, 35, 13, 9}, {281, 35, 11, 9}, {293, 35, 11, 9}, {305, 35, 12, 9}, {318, 35, 14, 9}, {333, 35, 13, 9}, {347, 35, 13, 9}, {119, 45, 14, 9}, {134, 45, 13, 9},
