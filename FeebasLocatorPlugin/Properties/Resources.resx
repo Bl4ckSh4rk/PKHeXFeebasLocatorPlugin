@@ -133,6 +133,9 @@
   <data name="lang_it" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\txt\lang_it.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="lang_ja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\txt\lang_ja.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="lang_ko" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\txt\lang_ko.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
