@@ -12,3 +12,5 @@ Kaphotics for [PKHeX](https://github.com/kwsch/PKHeX).
 TuxSH for his extensive research about Feebas fishing spots ([RSE](https://www.smogon.com/forums/threads/past-gen-rng-research.61090/page-34#post-3986326), [DPPt](https://www.smogon.com/forums/threads/past-gen-rng-research.61090/page-36#post-4079097)).
 
 suloku for his [Feebas Fishing Spot](https://projectpokemon.org/home/forums/topic/37192-feebas-fishing-spot-value-rusaem/) tool that has inspired me to make this plugin.
+
+ppllouf for Chinese translation!
