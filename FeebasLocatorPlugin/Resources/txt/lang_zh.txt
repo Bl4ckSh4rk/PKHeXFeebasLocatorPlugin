@@ -1,5 +1,5 @@
-﻿PluginName = Feebas Locator
-FeebasSeed = Feebas Seed
-SaveSeed = Save
-Route119 = Route 119
-MtCoronet = Mt. Coronet
+﻿PluginName = 丑丑鱼掉点工具
+FeebasSeed = 钓点 Seed
+SaveSeed = 保存
+Route119 = 119号道路
+MtCoronet = 天冠山
