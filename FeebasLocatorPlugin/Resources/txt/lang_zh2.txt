@@ -1,4 +1,4 @@
-﻿PluginName = 醜醜魚掉點工具
+﻿PluginName = 醜醜魚釣點工具
 FeebasSeed = 釣點 Seed
 SaveSeed = 保存
 Route119 = 119號道路
