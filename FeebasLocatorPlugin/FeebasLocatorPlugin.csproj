@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>Feebas Locator PKHeX Plugin</Description>
-    <FileVersion>1.4.0.0</FileVersion>
+    <FileVersion>1.4.1.0</FileVersion>
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <OutputType>Library</OutputType>
