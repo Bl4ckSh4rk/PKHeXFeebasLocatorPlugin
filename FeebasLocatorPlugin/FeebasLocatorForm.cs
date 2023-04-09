@@ -48,7 +48,7 @@ public partial class FeebasLocatorForm : Form
         else if (sav is SAV4 s4)
         {
             SetupGen4Form();
-            Seed = BitConverter.ToUInt32(s4.General, SeedOffset);
+            Seed = BitConverter.ToUInt32(s4.General[SeedOffset..]);
         }
 
         FeebasSeedBox.Text = Seed.ToString("X");
@@ -178,7 +178,7 @@ public partial class FeebasLocatorForm : Form
         }
         else if (sav is SAV4 s4)
         {
-            BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)).CopyTo(s4.General, SeedOffset);
+            BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)).CopyTo(s4.General[SeedOffset..]);
         }
         Close();
     }
