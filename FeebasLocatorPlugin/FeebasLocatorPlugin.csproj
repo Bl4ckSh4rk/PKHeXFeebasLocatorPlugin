@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <Description>Feebas Locator PKHeX Plugin</Description>
-    <FileVersion>1.4.3.0</FileVersion>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <FileVersion>1.5.0.0</FileVersion>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <OutputType>Library</OutputType>
-    <LangVersion>11</LangVersion>
+    <LangVersion>12</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 

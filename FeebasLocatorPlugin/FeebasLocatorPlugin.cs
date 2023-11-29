@@ -16,7 +16,7 @@ public class FeebasLocator : IPlugin
     {
         LocalizationUtil.SetLocalization(GameInfo.CurrentLanguage);
 
-        Console.WriteLine($"Loading {Name}...");
+        Console.WriteLine($"Loading {nameof(FeebasLocator)}...");
         SaveFileEditor = (ISaveFileProvider)Array.Find(args, z => z is ISaveFileProvider)!;
         LoadMenuStrip((ToolStrip?)Array.Find(args, z => z is ToolStrip));
 
@@ -47,7 +47,7 @@ public class FeebasLocator : IPlugin
     public void NotifySaveLoaded()
     {
         if (ctrl != null)
-            ctrl.Visible = SaveFileEditor.SAV is SAV3RS or SAV3E or SAV4DP or SAV4Pt;
+            ctrl.Visible = SaveFileEditor.SAV is IGen3Hoenn or SAV4Sinnoh;
     }
 
     public bool TryLoadFile(string filePath) => false;
