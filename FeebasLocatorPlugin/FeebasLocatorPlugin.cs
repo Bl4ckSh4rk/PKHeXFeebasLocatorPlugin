@@ -47,7 +47,7 @@ public class FeebasLocator : IPlugin
     public void NotifySaveLoaded()
     {
         if (ctrl != null)
-            ctrl.Visible = SaveFileEditor.SAV is IGen3Hoenn or SAV4Sinnoh;
+            ctrl.Visible = SaveFileEditor.SAV is IGen3Hoenn or SAV4Sinnoh or SAV8BS;
     }
 
     public bool TryLoadFile(string filePath) => false;

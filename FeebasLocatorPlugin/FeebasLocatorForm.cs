@@ -38,6 +38,10 @@ public partial class FeebasLocatorForm : Form
             case GameVersion.Pt:
                 SeedOffset = 0x5664;
                 break;
+            case GameVersion.BD:
+            case GameVersion.SP:
+                SeedOffset = 436;
+                break;
         }
 
         if (sav is SAV3 s3)
@@ -45,10 +49,15 @@ public partial class FeebasLocatorForm : Form
             SetupGen3Form();
             Seed = BitConverter.ToUInt16(s3.Large, SeedOffset);
         }
-        else if (sav is SAV4 s4)
+        else if (sav is SAV4Sinnoh s4)
         {
             SetupGen4Form();
             Seed = BitConverter.ToUInt32(s4.General[SeedOffset..]);
+        }
+        else if (sav is SAV8BS s8)
+        {
+            SetupGen4Form();
+            Seed = (uint)s8.GetWork(SeedOffset);
         }
 
         FeebasSeedBox.Text = Seed.ToString("X");
@@ -114,7 +123,7 @@ public partial class FeebasLocatorForm : Form
                 if (Feebas3.IsUnderBridge(tiles[i]))
                     MarkGen3UnderBridgeTiles();
             }
-            else if (sav is SAV4)
+            else if (sav is SAV4Sinnoh or SAV8BS)
             {
                 x = TileCoordinatesGen4[tiles[i], 0];
                 y = TileCoordinatesGen4[tiles[i], 1];
@@ -166,7 +175,7 @@ public partial class FeebasLocatorForm : Form
 
         if (sav is SAV3)
             MarkTiles(Feebas3.GetTiles(Seed));
-        else if (sav is SAV4)
+        else if (sav is SAV4Sinnoh or SAV8BS)
             MarkTiles(Feebas4.GetTiles(Seed));
     }
 
@@ -176,10 +185,15 @@ public partial class FeebasLocatorForm : Form
         {
             BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)).CopyTo(s3.Large, SeedOffset);
         }
-        else if (sav is SAV4 s4)
+        else if (sav is SAV4Sinnoh s4)
         {
             BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)).CopyTo(s4.General[SeedOffset..]);
         }
+        else if(sav is SAV8BS s8)
+        {
+            s8.SetWork(SeedOffset, (int)Util.GetHexValue(FeebasSeedBox.Text));
+        }
+        sav.State.Edited = true;
         Close();
     }
 
