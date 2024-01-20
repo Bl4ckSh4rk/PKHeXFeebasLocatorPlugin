@@ -9,12 +9,12 @@ Get the latest release on **[ProjectPokémon.org](https://projectpokemon.org/hom
 ## How to use
 Put the plugin into the *plugins* folder in your PKHeX directory, then access it from the *Tools* menu.
 
-Ruby, Sapphire and Emerald as well as Diamond, Pearl and Platinum are supported.
+Ruby, Sapphire and Emerald as well as Diamond, Pearl, Platinum, Brilliant Diamond and Shining Pearl are supported.
 
 ## Credits & Thanks
 - Kaphotics for [PKHeX](https://github.com/kwsch/PKHeX)
 - TuxSH for his extensive research about Feebas fishing spots ([RSE](https://www.smogon.com/forums/threads/past-gen-rng-research.61090/page-34#post-3986326), [DPPt](https://www.smogon.com/forums/threads/past-gen-rng-research.61090/page-36#post-4079097))
-- suloku for his Feebas Fishing Spot tool](https://projectpokemon.org/home/forums/topic/37192-feebas-fishing-spot-value-rusaem/) that has inspired me to make this plugin!
+- suloku for his [Feebas Fishing Spot tool](https://projectpokemon.org/home/forums/topic/37192-feebas-fishing-spot-value-rusaem/) that has inspired me to make this plugin!
 - Translators
   - Chinese (CHT/CHS): ppllouf/wubinwww
   - Japanese: mi-ya1987
