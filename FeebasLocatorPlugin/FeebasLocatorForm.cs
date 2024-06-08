@@ -132,7 +132,7 @@ public partial class FeebasLocatorForm : Form
 
                 Marker[i].Visible = Feebas4.IsAccessible(tiles[i]);
             }
-            
+
             Marker[i].BackColor = Color.Transparent;
             Marker[i].BackgroundImage = Properties.Resources.marker;
             Marker[i].Location = new Point(x, y);
@@ -144,7 +144,7 @@ public partial class FeebasLocatorForm : Form
     }
 
     private void MarkGen3UnderBridgeTiles()
-    {        
+    {
         ushort[,] TileCoordinates =
         {
             {257, 257}, {273, 257}, {289, 257}, {305, 257}, {321, 257},
@@ -189,7 +189,7 @@ public partial class FeebasLocatorForm : Form
         {
             BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)).CopyTo(s4.General[SeedOffset..]);
         }
-        else if(sav is SAV8BS s8)
+        else if (sav is SAV8BS s8)
         {
             s8.SetWork(SeedOffset, (int)Util.GetHexValue(FeebasSeedBox.Text));
         }

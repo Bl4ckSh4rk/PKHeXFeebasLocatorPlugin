@@ -1,5 +1,4 @@
-﻿using PKHeX.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace FeebasLocatorPlugin;
@@ -10,51 +9,33 @@ namespace FeebasLocatorPlugin;
 public static class LocalizationUtil
 {
     private const string TranslationSplitter = " = ";
-    private const string StringCachePrefix = nameof(FeebasLocatorPlugin); // to distinguish from cashed PKHeX resources
+    private const string LineSplitter = "\n";
 
     public static void SetLocalization(string currentCultureCode)
     {
-        SetLocalization(GetStringList($"lang_{currentCultureCode}"));
-    }
-
-    private static string[] GetStringList(string fileName)
-    {
-        if (Util.IsStringListCached($"{StringCachePrefix}_{fileName}", out var result))
-            return result;
-        var txt = Properties.Resources.ResourceManager.GetObject(fileName)?.ToString();
-        return Util.LoadStringList($"{StringCachePrefix}_{fileName}", txt);
+        var txt = Properties.Resources.ResourceManager.GetObject($"lang_{currentCultureCode}")?.ToString();
+        SetLocalization(txt == null ? [] : txt.Split(LineSplitter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
     }
 
     private static void SetLocalization(IReadOnlyCollection<string> lines)
     {
         if (lines.Count == 0)
             return;
+
+        Dictionary<string, string> dict = [];
         foreach (var line in lines)
         {
             var index = line.IndexOf(TranslationSplitter, StringComparison.Ordinal);
             if (index < 0)
                 continue;
-            var prop = line[..index];
-            var value = line[(index + TranslationSplitter.Length)..];
 
-            switch (prop)
-            {
-                case nameof(TranslationStrings.PluginName):
-                    TranslationStrings.PluginName = value;
-                    break;
-                case nameof(TranslationStrings.FeebasSeed):
-                    TranslationStrings.FeebasSeed = value;
-                    break;
-                case nameof(TranslationStrings.SaveSeed):
-                    TranslationStrings.SaveSeed = value;
-                    break;
-                case nameof(TranslationStrings.Route119):
-                    TranslationStrings.Route119 = value;
-                    break;
-                case nameof(TranslationStrings.MtCoronet):
-                    TranslationStrings.MtCoronet = value;
-                    break;
-            }
+            dict.Add(line[..index], line[(index + TranslationSplitter.Length)..]);
         }
+
+        TranslationStrings.PluginName = dict[nameof(TranslationStrings.PluginName)];
+        TranslationStrings.FeebasSeed = dict[nameof(TranslationStrings.FeebasSeed)];
+        TranslationStrings.SaveSeed = dict[nameof(TranslationStrings.SaveSeed)];
+        TranslationStrings.Route119 = dict[nameof(TranslationStrings.Route119)];
+        TranslationStrings.MtCoronet = dict[nameof(TranslationStrings.MtCoronet)];
     }
 }
