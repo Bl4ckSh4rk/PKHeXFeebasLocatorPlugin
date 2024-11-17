@@ -5,7 +5,7 @@ public static class Feebas3
     public static ushort[] GetTiles(uint seed)
     {
         short i = 0;
-        ushort[] tiles = new ushort[6] { 0, 0, 0, 0, 0, 0 };
+        ushort[] tiles = [0, 0, 0, 0, 0, 0];
         ushort tile;
 
         while (i < tiles.Length)
@@ -33,11 +33,11 @@ public static class Feebas4
 {
     public static ushort[] GetTiles(uint seed)
     {
-        ushort[] tiles = new ushort[4] { 0, 0, 0, 0 };
+        ushort[] tiles = [0, 0, 0, 0];
 
         for (short i = 0; i < tiles.Length; i++)
         {
-            tiles[i] = (ushort)((((seed >> (24 - 8 * i)) & 0xFF) % 0x84) + (0x84 * i));
+            tiles[i] = (ushort)((((seed >> (24 - (8 * i))) & 0xFF) % 0x84) + (0x84 * i));
         }
         return tiles;
     }

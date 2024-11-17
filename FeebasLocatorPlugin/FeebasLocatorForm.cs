@@ -20,42 +20,21 @@ public partial class FeebasLocatorForm : Form
         for (int i = 0; i < Marker.Length; i++)
             Marker[i] = new Panel();
 
-        switch (sav.Version)
-        {
-            case GameVersion.S:
-            case GameVersion.R:
-            case GameVersion.RS:
-                SeedOffset = 0x2DD4 + 2; // DewfordTrend
-                break;
-            case GameVersion.E:
-                SeedOffset = 0x2E64 + 6; // DewfordTrend
-                break;
-            case GameVersion.D:
-            case GameVersion.P:
-            case GameVersion.DP:
-                SeedOffset = 0x53C8;
-                break;
-            case GameVersion.Pt:
-                SeedOffset = 0x5664;
-                break;
-            case GameVersion.BD:
-            case GameVersion.SP:
-                SeedOffset = 436;
-                break;
-        }
-
         if (sav is SAV3 s3)
         {
+            SeedOffset = sav is SAV3RS ? 0x2DD6 : 0x2E6A;
             SetupGen3Form();
             Seed = BitConverter.ToUInt16(s3.Large, SeedOffset);
         }
         else if (sav is SAV4Sinnoh s4)
         {
+            SeedOffset = sav is SAV4DP ? 0x53C8 : 0x5664;
             SetupGen4Form();
             Seed = BitConverter.ToUInt32(s4.General[SeedOffset..]);
         }
         else if (sav is SAV8BS s8)
         {
+            SeedOffset = 436;
             SetupGen4Form();
             Seed = (uint)s8.GetWork(SeedOffset);
         }
@@ -143,14 +122,14 @@ public partial class FeebasLocatorForm : Form
         }
     }
 
+    private static readonly ushort[,] UnderBridgeTileCoordinates =
+    {
+        {257, 257}, {273, 257}, {289, 257}, {305, 257}, {321, 257},
+        {257, 273}, {273, 273}, {289, 273}, {305, 273}, {321, 273}
+    };
+
     private void MarkGen3UnderBridgeTiles()
     {
-        ushort[,] TileCoordinates =
-        {
-            {257, 257}, {273, 257}, {289, 257}, {305, 257}, {321, 257},
-            {257, 273}, {273, 273}, {289, 273}, {305, 273}, {321, 273}
-        };
-
         Panel[] Marker = new Panel[10];
 
         for (ushort i = 0; i < 10; i++)
@@ -159,7 +138,7 @@ public partial class FeebasLocatorForm : Form
             {
                 BackColor = Color.Transparent,
                 BackgroundImage = Properties.Resources.marker,
-                Location = new Point(TileCoordinates[i, 0], TileCoordinates[i, 1]),
+                Location = new Point(UnderBridgeTileCoordinates[i, 0], UnderBridgeTileCoordinates[i, 1]),
                 Name = "MarkerUnderBridge" + i,
                 Size = new Size(15, 15),
                 Visible = true
@@ -198,7 +177,7 @@ public partial class FeebasLocatorForm : Form
     }
 
     // {x, y}, width & height always 15
-    private readonly ushort[,] TileCoordinatesGen3 =
+    private static readonly ushort[,] TileCoordinatesGen3 =
     {
         {289, 17}, {289, 33}, {305, 33}, {257, 49}, {273, 49}, {289, 49}, {305, 49}, {273, 65}, {289, 65}, {305, 65},
         {273, 81}, {289, 81}, {305, 81}, {273, 97}, {289, 97}, {305, 97}, {273, 113}, {289, 113}, {305, 113}, {273, 193},
@@ -248,7 +227,7 @@ public partial class FeebasLocatorForm : Form
     };
 
     // {x, y, width, height}
-    private readonly ushort[,] TileCoordinatesGen4 =
+    private static readonly ushort[,] TileCoordinatesGen4 =
     {
         {119, 35, 14, 9}, {134, 35, 13, 9}, {148, 35, 12, 9}, {161, 35, 11, 9}, {173, 35, 12, 9}, {186, 35, 12, 9}, {199, 35, 13, 9}, {213, 35, 14, 9}, {228, 35, 12, 9}, {241, 35, 11, 9},
         {253, 35, 13, 9}, {267, 35, 13, 9}, {281, 35, 11, 9}, {293, 35, 11, 9}, {305, 35, 12, 9}, {318, 35, 14, 9}, {333, 35, 13, 9}, {347, 35, 13, 9}, {119, 45, 14, 9}, {134, 45, 13, 9},
