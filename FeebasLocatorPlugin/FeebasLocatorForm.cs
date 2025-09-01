@@ -24,7 +24,7 @@ public partial class FeebasLocatorForm : Form
         {
             SeedOffset = sav is SAV3RS ? 0x2DD6 : 0x2E6A;
             SetupGen3Form();
-            Seed = BitConverter.ToUInt16(s3.Large, SeedOffset);
+            Seed = BitConverter.ToUInt16(s3.Large[SeedOffset..]);
         }
         else if (sav is SAV4Sinnoh s4)
         {
@@ -162,7 +162,7 @@ public partial class FeebasLocatorForm : Form
     {
         if (sav is SAV3 s3)
         {
-            BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)).CopyTo(s3.Large, SeedOffset);
+            BitConverter.GetBytes(Util.GetHexValue(FeebasSeedBox.Text)).CopyTo(s3.Large[SeedOffset..]);
         }
         else if (sav is SAV4Sinnoh s4)
         {

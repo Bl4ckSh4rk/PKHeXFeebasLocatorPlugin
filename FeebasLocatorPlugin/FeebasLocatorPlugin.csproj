@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>Feebas Locator PKHeX Plugin</Description>
-    <Version>1.7.0.0</Version>
+    <Version>1.7.1.0</Version>
     <TargetFramework>net9.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <OutputType>Library</OutputType>
@@ -11,8 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PKHeX.Core" Version="24.11.11" />
-    <PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
+    <PackageReference Include="PKHeX.Core" Version="25.8.31" />
   </ItemGroup>
   
 </Project>
