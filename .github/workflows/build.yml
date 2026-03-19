@@ -3,26 +3,33 @@ name: Build
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+    - '.github/**'
+    - '*.md'
 
 jobs:
   build:
-
     runs-on: windows-latest
+
+    env:
+      PROJECT_NAME: FeebasLocatorPlugin
+      DOTNET_VERSION: 10.0.x
+      OUT_DIR: build
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: 10.0.x
+        dotnet-version: ${{ env.DOTNET_VERSION }}
     - name: Restore Dependencies
       run: dotnet restore
     - name: Build Release
-      run: dotnet build FeebasLocatorPlugin --no-restore --configuration Release -o build
+      run: dotnet build ${{ env.PROJECT_NAME }} --no-restore --configuration Release -o ${{ env.OUT_DIR }}
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
-        name: FeebasLocatorPlugin
-        path: build/*.dll
+        name: ${{ env.PROJECT_NAME }}
+        path: ${{ env.OUT_DIR }}/*.dll
         if-no-files-found: error
