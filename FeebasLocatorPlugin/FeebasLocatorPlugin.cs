@@ -49,7 +49,7 @@ public class FeebasLocator : IPlugin
     public void NotifySaveLoaded()
     {
         if (ctrl != null)
-            ctrl.Visible = SaveFileEditor.SAV is IGen3Hoenn or SAV4Sinnoh or SAV8BS;
+            ctrl.Visible = SaveFileEditor.SAV is SAV3RS or SAV3E or SAV4Sinnoh or SAV8BS;
     }
 
     public void NotifyDisplayLanguageChanged(string language)
