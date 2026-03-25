@@ -28,33 +28,22 @@ partial class FeebasLocatorForm
     /// </summary>
     private void InitializeComponent()
     {
-        TilePanel = new System.Windows.Forms.Panel();
         FeebasLocatorPanel = new System.Windows.Forms.Panel();
         LocationLabel = new System.Windows.Forms.Label();
         FeebasSeedLabel = new System.Windows.Forms.Label();
         SaveButton = new System.Windows.Forms.Button();
         FeebasSeedBox = new System.Windows.Forms.TextBox();
-        FeebasLocatorPanel.SuspendLayout();
         SuspendLayout();
-        // 
-        // TilePanel
-        // 
-        TilePanel.Location = new System.Drawing.Point(0, 0);
-        TilePanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-        TilePanel.Name = "TilePanel";
-        TilePanel.Size = new System.Drawing.Size(233, 115);
-        TilePanel.TabIndex = 0;
         // 
         // FeebasLocatorPanel
         // 
-        FeebasLocatorPanel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+        FeebasLocatorPanel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
         FeebasLocatorPanel.AutoScroll = true;
         FeebasLocatorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        FeebasLocatorPanel.Controls.Add(TilePanel);
-        FeebasLocatorPanel.Location = new System.Drawing.Point(14, 29);
+        FeebasLocatorPanel.Location = new System.Drawing.Point(13, 29);
         FeebasLocatorPanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
         FeebasLocatorPanel.Name = "FeebasLocatorPanel";
-        FeebasLocatorPanel.Size = new System.Drawing.Size(233, 115);
+        FeebasLocatorPanel.Size = new System.Drawing.Size(305, 236);
         FeebasLocatorPanel.TabIndex = 4;
         // 
         // LocationLabel
@@ -75,7 +64,7 @@ partial class FeebasLocatorForm
         FeebasSeedLabel.Name = "FeebasSeedLabel";
         FeebasSeedLabel.Size = new System.Drawing.Size(71, 15);
         FeebasSeedLabel.TabIndex = 2;
-        FeebasSeedLabel.Text = TranslationStrings.FeebasSeed;
+        FeebasSeedLabel.Text = "Feebas Seed";
         // 
         // SaveButton
         // 
@@ -85,7 +74,7 @@ partial class FeebasLocatorForm
         SaveButton.Name = "SaveButton";
         SaveButton.Size = new System.Drawing.Size(84, 22);
         SaveButton.TabIndex = 1;
-        SaveButton.Text = TranslationStrings.SaveSeed;
+        SaveButton.Text = "Save";
         SaveButton.UseVisualStyleBackColor = true;
         SaveButton.Click += SaveButton_Click;
         // 
@@ -96,10 +85,12 @@ partial class FeebasLocatorForm
         FeebasSeedBox.Font = new System.Drawing.Font("Consolas", 9.75F);
         FeebasSeedBox.Location = new System.Drawing.Point(99, 272);
         FeebasSeedBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+        FeebasSeedBox.MaxLength = 8;
         FeebasSeedBox.Name = "FeebasSeedBox";
-        FeebasSeedBox.Size = new System.Drawing.Size(116, 23);
+        FeebasSeedBox.Size = new System.Drawing.Size(90, 23);
         FeebasSeedBox.TabIndex = 5;
         FeebasSeedBox.TextChanged += FeebasSeedBox_TextChanged;
+        FeebasSeedBox.KeyPress += FeebasSeedBox_KeyPressed;
         // 
         // FeebasLocatorForm
         // 
@@ -116,15 +107,12 @@ partial class FeebasLocatorForm
         MaximizeBox = false;
         Name = "FeebasLocatorForm";
         ShowIcon = false;
-        Text = TranslationStrings.PluginName;
-        FeebasLocatorPanel.ResumeLayout(false);
+        Text = "Feebas Locator";
         ResumeLayout(false);
         PerformLayout();
     }
 
     #endregion
-
-    private System.Windows.Forms.Panel TilePanel;
     private System.Windows.Forms.Panel FeebasLocatorPanel;
     private System.Windows.Forms.Label LocationLabel;
     private System.Windows.Forms.Label FeebasSeedLabel;
